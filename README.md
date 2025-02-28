@@ -121,7 +121,7 @@ Replace `base_model_cpu` with other models from the model_repository for other m
 
 #### Single GPU - with dynamic batching
 ```
-perf_analyzer -m base_model_gpu --concurrency-range 1:4:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
+perf_analyzer -m base_model_gpu --concurrency-range 1:8:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
 ```
 
 Monitor the GPU usage by running `nvtop`
