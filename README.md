@@ -128,6 +128,18 @@ Monitor the GPU usage by running `nvtop`
 
 ![nvtop]('./images/gpu.png')
 
+```
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 1, throughput: 10.602 infer/sec, latency 90550 usec
+Concurrency: 2, throughput: 12.18 infer/sec, latency 159764 usec
+Concurrency: 3, throughput: 12.8761 infer/sec, latency 229387 usec
+Concurrency: 4, throughput: 14.0988 infer/sec, latency 277634 usec
+Concurrency: 5, throughput: 14.3746 infer/sec, latency 345963 usec
+Concurrency: 6, throughput: 13.4356 infer/sec, latency 440196 usec
+Concurrency: 7, throughput: 14.097 infer/sec, latency 488246 usec
+Concurrency: 8, throughput: 15.0306 infer/sec, latency 530322 usec
+```
+
 #### Multi GPU 
 ```
 perf_analyzer -m base_model_multi_gpu --concurrency-range 1:4:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
