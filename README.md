@@ -99,9 +99,11 @@ python3 iterative_inference_onnx.py
 
 ## Performance analyzer comparisions 
 
-### CPU
+We will now run a performance analyser to sent concurrent requests to our server and will measure the latency and throughput. 
+**Note:** Make sure to copy the `model.onnx` onto every model similar to that of the cpu step before you run the analyis. If any changes are made to the configs the triton server needs to be restarted for it to reflect
 
-We will now run a performance analyser to sent concurrent requests to our server and will measure the latency and throughput.  
+
+### CPU
 
 ```
 perf_analyzer -m base_model_cpu --concurrency-range 1:4:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
@@ -115,7 +117,10 @@ Concurrency: 3, throughput: 24.2073 infer/sec, latency 119359 usec
 Concurrency: 4, throughput: 24.3294 infer/sec, latency 160817 usec
 ```
 
-### Single GPU with dynamic batching
+### Dynamic batching - Single GPU
+
+All inference requests are batched into groups of either [2, 4, 8] before they are served. 
+
 ```
 perf_analyzer -m base_model_gpu --concurrency-range 1:8:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
 ```
@@ -137,16 +142,30 @@ Concurrency: 8, throughput: 15.0306 infer/sec, latency 530322 usec
 ```
 
 
-###  Performance analysis on other configurations
+### Concurrent Execution - Multi GPU
 
-Replace `base_model_cpu` with other models from the model_repository for other models. (Quantized models will be added soon). 
+Requests are processed parallelly on 2 GPUs 
 
-**Note:** Make sure to copy the `model.onnx` onto every model similar to that of the cpu step before you run the analyis. If any changes are made to the configs the triton server needs to be restarted for it to reflect
-
-#### Multi GPU 
 ```
-perf_analyzer -m base_model_multi_gpu --concurrency-range 1:4:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
+perf_analyzer -m base_model_multi_gpu --concurrency-range 1:10:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
 ```
+
+![nvtop]('./images/multi_gpu.png')
+
+```
+Inferences/Second vs. Client Average Batch Latency
+Concurrency: 1, throughput: 10.6052 infer/sec, latency 89924 usec
+Concurrency: 2, throughput: 21.456 infer/sec, latency 88377 usec
+Concurrency: 3, throughput: 22.6232 infer/sec, latency 128569 usec
+Concurrency: 4, throughput: 25.0411 infer/sec, latency 156797 usec
+Concurrency: 5, throughput: 26.9275 infer/sec, latency 181873 usec
+Concurrency: 6, throughput: 27.4323 infer/sec, latency 215863 usec
+Concurrency: 7, throughput: 28.0197 infer/sec, latency 244219 usec
+Concurrency: 8, throughput: 27.3866 infer/sec, latency 286905 usec
+Concurrency: 9, throughput: 28.407 infer/sec, latency 312880 usec
+Concurrency: 10, throughput: 28.3437 infer/sec, latency 344619 usec
+```
+
 
 #### TensorRT
 ```
