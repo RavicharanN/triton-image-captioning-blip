@@ -97,6 +97,8 @@ Your triton server will run at `localhost:8000`, to send a single inference requ
 python3 iterative_inference_onnx.py
 ```
 
+## Performance analyzer comparisions 
+
 ### Performance analyser - CPU
 
 We will now run a performance analyser to sent concurrent requests to our server and will measure the latency and throughput.  
