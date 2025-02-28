@@ -99,7 +99,7 @@ python3 iterative_inference_onnx.py
 
 ## Performance analyzer comparisions 
 
-### Performance analyser - CPU
+### CPU
 
 We will now run a performance analyser to sent concurrent requests to our server and will measure the latency and throughput.  
 
@@ -115,7 +115,7 @@ Concurrency: 3, throughput: 24.2073 infer/sec, latency 119359 usec
 Concurrency: 4, throughput: 24.3294 infer/sec, latency 160817 usec
 ```
 
-### Performance analyser - Single GPU with dynamic batching
+### Single GPU with dynamic batching
 ```
 perf_analyzer -m base_model_gpu --concurrency-range 1:8:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
 ```
