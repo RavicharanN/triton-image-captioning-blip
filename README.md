@@ -129,6 +129,6 @@ perf_analyzer -m base_model_multi_gpu --concurrency-range 1:4:1 --shape pixel_va
 
 #### TensorRT
 ```
-perf_analyzer -m tensorrt_model --concurrency-range 1:4:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
+perf_analyzer -m trt_model --concurrency-range 1:4:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
 ```
 
