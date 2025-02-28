@@ -124,6 +124,10 @@ Replace `base_model_cpu` with other models from the model_repository for other m
 perf_analyzer -m base_model_gpu --concurrency-range 1:4:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
 ```
 
+Monitor the GPU usage by running `nvtop`
+
+[nvtop](!'./images/gpu.png')
+
 #### Multi GPU 
 ```
 perf_analyzer -m base_model_multi_gpu --concurrency-range 1:4:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
