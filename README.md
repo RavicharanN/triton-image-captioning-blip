@@ -127,7 +127,7 @@ perf_analyzer -m base_model_gpu --concurrency-range 1:8:1 --shape pixel_values:3
 
 Monitor the GPU usage by running `nvtop`
 
-![nvtop]('./images/gpu.png')
+![nvtop](./images/gpu.png)
 
 ```
 Inferences/Second vs. Client Average Batch Latency
@@ -150,7 +150,7 @@ Requests are processed parallelly on 2 GPUs
 perf_analyzer -m base_model_multi_gpu --concurrency-range 1:10:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
 ```
 
-![nvtop]('./images/multi_gpu.png')
+![nvtop](./images/multi_gpu.png)
 
 ```
 Inferences/Second vs. Client Average Batch Latency
