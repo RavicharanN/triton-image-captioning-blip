@@ -115,7 +115,9 @@ Concurrency: 4, throughput: 24.3294 infer/sec, latency 160817 usec
 
 ###  Performance analysis on other configurations
 
-Replace `base_model_cpu` with other models from the model_repository for other models. (Quantized models will be added soon)
+Replace `base_model_cpu` with other models from the model_repository for other models. (Quantized models will be added soon). 
+
+**Note:** Make sure to copy the `model.onnx` onto every model similar to that of the cpu step before you run the analyis. If any changes are made to the configs the triton server needs to be restarted for it to reflect
 
 #### Single GPU - with dynamic batching
 ```
@@ -131,4 +133,6 @@ perf_analyzer -m base_model_multi_gpu --concurrency-range 1:4:1 --shape pixel_va
 ```
 perf_analyzer -m trt_model --concurrency-range 1:4:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
 ```
+
+Note: More models will be added to the model_repository 
 
