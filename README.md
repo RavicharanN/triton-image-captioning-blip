@@ -97,7 +97,7 @@ Your triton server will run at `localhost:8000`, to send a single inference requ
 python3 iterative_inference_onnx.py
 ```
 
-### Performance analyser 
+### Performance analyser - CPU
 
 We will now run a performance analyser to sent concurrent requests to our server and will measure the latency and throughput.  
 
@@ -113,13 +113,7 @@ Concurrency: 3, throughput: 24.2073 infer/sec, latency 119359 usec
 Concurrency: 4, throughput: 24.3294 infer/sec, latency 160817 usec
 ```
 
-###  Performance analysis on other configurations
-
-Replace `base_model_cpu` with other models from the model_repository for other models. (Quantized models will be added soon). 
-
-**Note:** Make sure to copy the `model.onnx` onto every model similar to that of the cpu step before you run the analyis. If any changes are made to the configs the triton server needs to be restarted for it to reflect
-
-#### Single GPU - with dynamic batching
+### Performance analyser - Single GPU with dynamic batching
 ```
 perf_analyzer -m base_model_gpu --concurrency-range 1:8:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
 ```
@@ -139,6 +133,13 @@ Concurrency: 6, throughput: 13.4356 infer/sec, latency 440196 usec
 Concurrency: 7, throughput: 14.097 infer/sec, latency 488246 usec
 Concurrency: 8, throughput: 15.0306 infer/sec, latency 530322 usec
 ```
+
+
+###  Performance analysis on other configurations
+
+Replace `base_model_cpu` with other models from the model_repository for other models. (Quantized models will be added soon). 
+
+**Note:** Make sure to copy the `model.onnx` onto every model similar to that of the cpu step before you run the analyis. If any changes are made to the configs the triton server needs to be restarted for it to reflect
 
 #### Multi GPU 
 ```
