@@ -126,7 +126,7 @@ perf_analyzer -m base_model_gpu --concurrency-range 1:4:1 --shape pixel_values:3
 
 Monitor the GPU usage by running `nvtop`
 
-[nvtop](!'./images/gpu.png')
+![nvtop]('./images/gpu.png')
 
 #### Multi GPU 
 ```
