@@ -134,5 +134,5 @@ perf_analyzer -m base_model_multi_gpu --concurrency-range 1:4:1 --shape pixel_va
 perf_analyzer -m trt_model --concurrency-range 1:4:1 --shape pixel_values:3,384,384 --shape input_ids:16 --shape attention_mask:16
 ```
 
-Note: More models will be added to the model_repository 
+**Note:** More models will be added to the model_repository - quantization, distillation, warm vs cold start. And different configurations for batching
 
